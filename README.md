@@ -39,7 +39,6 @@ The objective of this task is to perform data analysis using SQL on a structured
 
 ### 1. Top Cities by Customer Count
 
-```sql
 SELECT
     customer_city,
     customer_state,
@@ -47,4 +46,57 @@ SELECT
 FROM olist_customers_dataset
 GROUP BY customer_city, customer_state
 ORDER BY city_count DESC;
+
 -<a href= "">Screenshort</a>
+
+### Order Count by Purchase Date
+
+SELECT
+    order_purchase_timestamp::date AS order_date,
+    COUNT(*) AS order_count
+FROM olist_orders_dataset
+GROUP BY order_purchase_timestamp::date
+ORDER BY order_purchase_timestamp::date ASC;
+
+-<a href= "">Screenshort</a>
+
+### Most Ordered Product Categories
+
+SELECT
+    t.product_category_name_english,
+    COUNT(*) AS count_orders
+FROM olist_products_dataset p
+INNER JOIN olist_order_items_dataset oi ON p.product_id = oi.product_id
+INNER JOIN product_category_name_translation t ON p.product_category_name = t.product_category_name
+GROUP BY t.product_category_name_english
+ORDER BY count_orders DESC;
+
+-<a href= "">Screenshort</a>
+
+
+## Outcome
+This task helped in understanding how to:
+
+Extract and analyze real-world structured data using SQL
+
+Apply joins and aggregation to draw insights
+
+Optimize queries using filters and indexes
+
+Visualize and interpret results with SQL outputs
+
+## Deliverables
+SQL queries (in .sql file)
+
+Screenshots of outputs
+
+README documentation
+
+## Learning Highlights
+Data manipulation with SQL
+
+Intermediate SQL techniques with PostgreSQL
+
+Analytical thinking using structured queries
+
+Practical use of DBeaver for database interaction
